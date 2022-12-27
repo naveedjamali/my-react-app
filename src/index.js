@@ -1,17 +1,43 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+class Car {
+  constructor(name) {
+    this.name = name;
+  }
+  changeName(name) {
+    this.name = name;
+  }
+  getName() {
+    return this.name;
+  }
+}
+
+class CarModel extends Car {
+  constructor(name, mod) {
+    super(name);
+    this.mod = mod;
+  }
+  changeMod(mod) {
+    this.mod = mod;
+  }
+  getName() {
+    return `${super.getName()} | ${this.mod}`;
+  }
+}
+
+const myCar = new Car("Honda");
+myCar.changeName("Margalla");
+
+const carModel = new CarModel("Ford", "E350");
+
+const myFirstElement = (
+  <>
+    <h1>{myCar.getName()}</h1>
+    <h1>{carModel.getName()}</h1>
+  </>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(myFirstElement);
